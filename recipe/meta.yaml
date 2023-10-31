@@ -24,11 +24,11 @@ requirements:
   host:
     - llvm-openmp           # [osx]
     - libgomp               # [linux]
-    - nceplibs-sp
+    - nceplibs-sp >=2.3.0
   run:
     - llvm-openmp           # [osx]
     - libgomp               # [linux]
-    - nceplibs-sp
+    - nceplibs-sp >=2.3.0
 
 test:
   commands:
