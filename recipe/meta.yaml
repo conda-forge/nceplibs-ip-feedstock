@@ -1,5 +1,5 @@
 {% set name = "nceplibs-ip" %}
-{% set version = "4.3.0" %}
+{% set version = "4.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/NOAA-EMC/NCEPLIBS-ip/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 799308a868dea889d2527d96a0405af7b376869581410fe4cff681205e9212b4
+  sha256: 858d9201ce0bc4d16b83581ef94a4a0262f498ed1ea1b0535de2e575da7a8b8c
 
 build:
   skip: true  # [win]
@@ -24,11 +24,11 @@ requirements:
   host:
     - llvm-openmp           # [osx]
     - libgomp               # [linux]
-    - nceplibs-sp
+    - nceplibs-sp >=2.3.0
   run:
     - llvm-openmp           # [osx]
     - libgomp               # [linux]
-    - nceplibs-sp
+    - nceplibs-sp >=2.3.0
 
 test:
   commands:
