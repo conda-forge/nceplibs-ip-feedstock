@@ -10,29 +10,35 @@ source:
   sha256: 858d9201ce0bc4d16b83581ef94a4a0262f498ed1ea1b0535de2e575da7a8b8c
 
 build:
-  skip: true  # [win]
-  number: 0
+  number: 1
 
 requirements:
   build:
-    - {{ compiler('fortran') }}
-    - {{ compiler('c') }}
+    - {{ compiler('fortran') }}  # [not win]
+    - {{ compiler('c') }}        # [not win]
+    - make                       # [not win]
+    - m2w64-gcc-fortran          # [win]
+    - ninja                      # [win]
     - cmake
     - pkg-config >=0.21
-    - make                  # [not win]
-    - ninja                 # [win]
   host:
-    - llvm-openmp           # [osx]
-    - libgomp               # [linux]
+    - llvm-openmp                # [osx]
+    - libgomp                    # [linux]
     - nceplibs-sp >=2.3.0
+    - m2w64-gcc-fortran          # [win]
   run:
-    - llvm-openmp           # [osx]
-    - libgomp               # [linux]
+    - llvm-openmp                # [osx]
+    - libgomp                    # [linux]
     - nceplibs-sp >=2.3.0
+    - m2w64-gcc-libgfortran      # [win]
+    - m2w64-gcc-libs             # [win]
 
 test:
   commands:
-    - test -f ${PREFIX}/lib/libip_4${SHLIB_EXT} -o -f ${PREFIX}/lib/libip_d${SHLIB_EXT}  # [not win]
+    - test -f ${PREFIX}/lib/libip_4${SHLIB_EXT}  # [not win]
+    - test -f ${PREFIX}/lib/libip_d${SHLIB_EXT}  # [not win]
+    - if not exist %LIBRARY_BIN%\\libip_4.dll exit 1  # [win]
+    - if not exist %LIBRARY_BIN%\\libip_d.dll exit 1  # [win]
 
 about:
   home: https://github.com/NOAA-EMC/NCEPLIBS-ip
