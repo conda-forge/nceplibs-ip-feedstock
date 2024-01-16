@@ -10,7 +10,7 @@ source:
   sha256: 858d9201ce0bc4d16b83581ef94a4a0262f498ed1ea1b0535de2e575da7a8b8c
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -49,4 +49,4 @@ about:
 extra:
   recipe-maintainers:
     - EricEngle-NOAA
-    - timcera
+    - TimothyCera-NOAA
