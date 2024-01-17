@@ -1,7 +1,5 @@
 build_platform:
   linux_64: linux_64
-  linux_ppc64le: linux_ppc64le
-  linux_aarch64: linux_aarch64
   osx_64: osx_64
   osx_arm64: osx_64
   win_64: win_64
@@ -14,7 +12,5 @@ github:
 os_version:
   linux_64: cos7
 provider:
-  linux_aarch64: azure
-  linux_ppc64le: azure
   osx_arm64: azure
 test_on_native_only: true
