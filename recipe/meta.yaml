@@ -1,5 +1,5 @@
 {% set name = "nceplibs-ip" %}
-{% set version = "4.4.0" %}
+{% set version = "5.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/NOAA-EMC/NCEPLIBS-ip/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 858d9201ce0bc4d16b83581ef94a4a0262f498ed1ea1b0535de2e575da7a8b8c
+  sha256: 54b2987bd4f94adc1f7595d2a384e646019c22d163bcd30840a916a6abd7df71
 
 build:
-  number: 3
+  number: 0
 
 requirements:
   build:
