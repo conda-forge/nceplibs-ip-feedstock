@@ -8,35 +8,33 @@ package:
 source:
   url: https://github.com/NOAA-EMC/NCEPLIBS-ip/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 54b2987bd4f94adc1f7595d2a384e646019c22d163bcd30840a916a6abd7df71
+  patches:
+    - 0001-Configure-flags-for-Intel-and-gfortran.patch  # [win]
 
 build:
   number: 0
 
 requirements:
   build:
-    - {{ compiler('fortran') }}  # [not win]
-    - {{ compiler('c') }}        # [not win]
-    - make                       # [not win]
-    - m2w64-gcc-fortran          # [win]
-    - ninja                      # [win]
+    - {{ compiler('fortran') }}        # [not win]
+    - {{ compiler('c') }}              # [not win]
+    - make                             # [not win]
+    - {{ compiler('m2w64_fortran') }}  # [win]
+    - {{ compiler('m2w64_c') }}        # [win]
+    - ninja                            # [win]
     - cmake
     - pkg-config >=0.21
   host:
-    - llvm-openmp                # [osx]
-    - libgomp                    # [linux]
-    - nceplibs-sp >=2.3.0
-    - m2w64-gcc-fortran          # [win]
+    - libgomp      # [linux]
+    - llvm-openmp
   run:
-    - llvm-openmp                # [osx]
-    - libgomp                    # [linux]
-    - nceplibs-sp >=2.3.0
-    - m2w64-gcc-libgfortran      # [win]
-    - m2w64-gcc-libs             # [win]
+    - libgomp      # [linux]
+    - llvm-openmp
 
 test:
   commands:
-    - test -f ${PREFIX}/lib/libip_4${SHLIB_EXT}  # [not win]
-    - test -f ${PREFIX}/lib/libip_d${SHLIB_EXT}  # [not win]
+    - test -f ${PREFIX}/lib/libip_4${SHLIB_EXT}       # [not win]
+    - test -f ${PREFIX}/lib/libip_d${SHLIB_EXT}       # [not win]
     - if not exist %LIBRARY_BIN%\\libip_4.dll exit 1  # [win]
     - if not exist %LIBRARY_BIN%\\libip_d.dll exit 1  # [win]
 
