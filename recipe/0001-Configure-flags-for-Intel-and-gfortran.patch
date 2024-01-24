@@ -1,0 +1,42 @@
+From bde81ff47dc11043173560343e5762d62247441f Mon Sep 17 00:00:00 2001
+From: Tim Cera <tim@cerazone.net>
+Date: Tue, 23 Jan 2024 16:46:07 -0500
+Subject: [PATCH] Configure flags for Intel and gfortran
+
+---
+ src/CMakeLists.txt | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 86ce0c8..721f7c1 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -26,9 +26,22 @@ if(BUILD_DEPRECATED)
+   sptgpsd.f sptgptd.f sptgptsd.f sptgptvd.f sptrund.f sptrunl.f spvar.f)
+ endif()
+ 
+-set_source_files_properties(fftpack.F PROPERTIES COMPILE_FLAGS -fcheck=no-bounds)
+-set_source_files_properties(sptranf.f PROPERTIES COMPILE_FLAGS -fcheck=no-bounds)
+-set_source_files_properties(sptranfv.f PROPERTIES COMPILE_FLAGS -fcheck=no-bounds)
++# Set compiler flags.
++if(CMAKE_Fortran_COMPILER_ID MATCHES "^(Intel|IntelLLVM)$")
++  set_source_files_properties(fftpack.F PROPERTIES COMPILE_FLAGS -check=nobounds)
++  set_source_files_properties(sptranf.f PROPERTIES COMPILE_FLAGS -check=nobounds)
++  set_source_files_properties(sptranfv.f PROPERTIES COMPILE_FLAGS -check=nobounds)
++elseif(CMAKE_Fortran_COMPILER_ID MATCHES "^(GNU)$")
++  if(${CMAKE_Fortran_COMPILER_VERSION} VERSION_GREATER_EQUAL 6)
++    set_source_files_properties(fftpack.F PROPERTIES COMPILE_FLAGS -fcheck=no-bounds)
++    set_source_files_properties(sptranf.f PROPERTIES COMPILE_FLAGS -fcheck=no-bounds)
++    set_source_files_properties(sptranfv.f PROPERTIES COMPILE_FLAGS -fcheck=no-bounds)
++  else()
++    set_source_files_properties(fftpack.F PROPERTIES COMPILE_FLAGS -fno-bounds-check)
++    set_source_files_properties(sptranf.f PROPERTIES COMPILE_FLAGS -fno-bounds-check)
++    set_source_files_properties(sptranfv.f PROPERTIES COMPILE_FLAGS -fno-bounds-check)
++  endif()
++endif()
+ 
+ # Build _4, _d, and/or _8 depending on options provided to CMake
+ foreach(kind ${kinds})
+-- 
+2.34.1
+
