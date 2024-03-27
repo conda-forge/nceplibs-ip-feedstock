@@ -24,7 +24,7 @@ cmake -G "${CMAKE_GENERATOR}" \
       -DCMAKE_FIND_APPBUNDLE=NEVER \
       -DBUILD_SHARED_LIBS=ON \
       -DBUILD_STATIC_LIBS=ON \
-      -DOPENMP=OFF \
+      -DOPENMP=ON \
       "${SRC_DIR}"
 make
 make install
