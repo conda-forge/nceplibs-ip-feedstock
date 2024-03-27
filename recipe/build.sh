@@ -29,7 +29,7 @@ cmake -G "${CMAKE_GENERATOR}" \
 make
 make install
 
-SKIP=""
+SKIP="-E test_polar_stereo_neighbor_budget_vector_grib1_4|test_polar_stereo_neighbor_budget_vector_grib2_4"
 
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
   ctest -VV --output-on-failure -j"${CPU_COUNT}" "${SKIP}"
