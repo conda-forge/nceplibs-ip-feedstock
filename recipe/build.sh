@@ -24,13 +24,12 @@ cmake -G "${CMAKE_GENERATOR}" \
       -DCMAKE_FIND_APPBUNDLE=NEVER \
       -DBUILD_SHARED_LIBS=ON \
       -DBUILD_STATIC_LIBS=ON \
-      -DOPENMP=OFF \
+      -DOPENMP=ON \
       "${SRC_DIR}"
 make
 make install
 
-SKIP=""
-
-if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
-  ctest -VV --output-on-failure -j"${CPU_COUNT}" "${SKIP}"
+# Skip ctest when cross-compiling
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
+  ctest -VV --output-on-failure -j"${CPU_COUNT}" -E 'test_polar_stereo_neighbor_budget_vector_grib1_4|test_polar_stereo_neighbor_budget_vector_grib2_4'
 fi

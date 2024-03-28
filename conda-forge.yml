@@ -1,8 +1,5 @@
 build_platform:
-  linux_64: linux_64
-  osx_64: osx_64
   osx_arm64: osx_64
-  win_64: win_64
 conda_build:
   pkg_format: '2'
 conda_forge_output_validation: true
@@ -12,5 +9,6 @@ github:
 os_version:
   linux_64: cos7
 provider:
-  osx_arm64: azure
+  linux_ppc64le: default
+  linux_aarch64: default
 test: native_and_emulated
