@@ -15,6 +15,7 @@ cmake -G"Ninja" ^
       -DBUILD_STATIC_LIBS=ON ^
       -DOPENMP=ON ^
       -DBUILD_TESTING=OFF ^
+      -DBLA_VENDOR=OpenBLAS ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
