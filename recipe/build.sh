@@ -25,6 +25,7 @@ cmake -G "${CMAKE_GENERATOR}" \
       -DBUILD_SHARED_LIBS=ON \
       -DBUILD_STATIC_LIBS=ON \
       -DOPENMP=ON \
+      -DBLA_VENDOR=OpenBLAS \
       "${SRC_DIR}"
 make
 make install
