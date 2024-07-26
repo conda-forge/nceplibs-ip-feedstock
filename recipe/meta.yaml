@@ -27,12 +27,14 @@ requirements:
     - cmake
     - pkg-config >=0.21
   host:
-    - libgomp      # [linux]
-    - llvm-openmp
+    - libgomp        # [not win]
+    - llvm-openmp    # [not win]
+    - openmp ==5.0.0   # [win]
     - openblas
   run:
-    - libgomp      # [linux]
-    - llvm-openmp
+    - libgomp        # [not win]
+    - llvm-openmp    # [not win]
+    - openmp ==5.0.0   # [win]
     - openblas
 
 test:
