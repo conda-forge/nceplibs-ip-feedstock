@@ -26,6 +26,7 @@ cmake -G "${CMAKE_GENERATOR}" \
       -DBUILD_STATIC_LIBS=ON \
       -DOPENMP=ON \
       -DBLA_VENDOR=OpenBLAS \
+      -DFTP_TEST_FILES=ON \
       "${SRC_DIR}"
 make
 make install
