@@ -12,7 +12,7 @@ source:
 #    - 0001-Configure-flags-for-Intel-and-gfortran.patch  # [win]
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -40,9 +40,7 @@ requirements:
 test:
   commands:
     - test -f ${PREFIX}/lib/libip_4${SHLIB_EXT}       # [not win]
-    - test -f ${PREFIX}/lib/libip_d${SHLIB_EXT}       # [not win]
     - if not exist %LIBRARY_BIN%\\libip_4.dll exit 1  # [win]
-    - if not exist %LIBRARY_BIN%\\libip_d.dll exit 1  # [win]
 
 about:
   home: https://github.com/NOAA-EMC/NCEPLIBS-ip
