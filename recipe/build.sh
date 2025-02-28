@@ -26,11 +26,24 @@ cmake -G "${CMAKE_GENERATOR}" \
       -DBUILD_STATIC_LIBS=ON \
       -DOPENMP=ON \
       -DBLA_VENDOR=OpenBLAS \
+      -DFTP_TEST_FILES=ON \
+      -DBUILD_D=OFF \
       "${SRC_DIR}"
 make
 make install
 
+# Tests to exclude for below when running in emulation
+touch tests-to-exclude.txt
+echo "test_polar_stereo_neighbor_budget_vector_grib1_4" >> tests-to-exclude.txt
+echo "test_polar_stereo_neighbor_budget_vector_grib2_4" >> tests-to-exclude.txt
+echo "test_rotatedB_direct_ncep_post_spectral_vector_grib2_4" >> tests-to-exclude.txt
+echo "test_rotatedB_direct_spectral_vector_grib2_4" >> tests-to-exclude.txt
+echo "test_rotatedB_spectral_scalar_grib1_4" >> tests-to-exclude.txt
+echo "test_rotatedB_spectral_scalar_grib2_4" >> tests-to-exclude.txt
+echo "test_rotatedB_spectral_vector_grib1_4" >> tests-to-exclude.txt
+echo "test_rotatedB_spectral_vector_grib2_4" >> tests-to-exclude.txt
+
 # Skip ctest when cross-compiling
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
-  ctest -VV --output-on-failure -j"${CPU_COUNT}" -E 'test_polar_stereo_neighbor_budget_vector_grib1_4|test_polar_stereo_neighbor_budget_vector_grib2_4'
+  ctest -VV --output-on-failure -j"${CPU_COUNT}" --exclude-from-file "tests-to-exclude.txt"
 fi

@@ -16,6 +16,8 @@ cmake -G"Ninja" ^
       -DOPENMP=ON ^
       -DBUILD_TESTING=OFF ^
       -DBLA_VENDOR=OpenBLAS ^
+      -DFTP_TEST_FILES=ON ^
+      -DBUILD_D=OFF ^
       %SRC_DIR%
 if errorlevel 1 exit 1
 
