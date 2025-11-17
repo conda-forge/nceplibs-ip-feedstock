@@ -28,8 +28,7 @@ requirements:
     - pkg-config >=0.21
   host:
     - libgomp        # [linux]
-    - llvm-openmp    # [osx]
-    - openmp ==5.0.0   # [win]
+    - llvm-openmp    # [osx and win]
     - openblas
   run:
     - libgomp        # [linux]
