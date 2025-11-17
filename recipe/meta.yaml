@@ -33,8 +33,7 @@ requirements:
     - openblas
   run:
     - libgomp        # [linux]
-    - llvm-openmp    # [osx]
-    - openmp ==5.0.0   # [win]
+    - llvm-openmp    # [osx and win]
     - openblas
 
 test:
