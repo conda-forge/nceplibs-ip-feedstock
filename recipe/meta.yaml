@@ -12,29 +12,27 @@ source:
 #    - 0001-Configure-flags-for-Intel-and-gfortran.patch  # [win]
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
-    - {{ compiler('fortran') }}        # [not win]
+    - {{ compiler("fortran") }}
     - {{ compiler('c') }}              # [not win]
     - {{ stdlib("c") }}                # [not win]
     - make                             # [not win]
-    - {{ compiler('m2w64_fortran') }}  # [win]
-    - {{ compiler('m2w64_c') }}        # [win]
-    - {{ stdlib("m2w64_c") }}          # [win]
+    - {{ stdlib("c") }}
+    - {{ compiler("c") }}
+    - {{ compiler("fortran") }}
     - ninja                            # [win]
     - cmake
     - pkg-config >=0.21
   host:
     - libgomp        # [linux]
-    - llvm-openmp    # [osx]
-    - openmp ==5.0.0   # [win]
+    - llvm-openmp    # [osx and win]
     - openblas
   run:
     - libgomp        # [linux]
-    - llvm-openmp    # [osx]
-    - openmp ==5.0.0   # [win]
+    - llvm-openmp    # [osx and win]
     - openblas
 
 test:
