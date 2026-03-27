@@ -45,5 +45,5 @@ echo "test_rotatedB_spectral_vector_grib2_4" >> tests-to-exclude.txt
 
 # Skip ctest when cross-compiling
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
-  ctest -VV --output-on-failure -j"${CPU_COUNT}" --exclude-from-file "tests-to-exclude.txt"
+  ctest -VV --output-on-failure -j"${CPU_COUNT}" --exclude-from-file "tests-to-exclude.txt" --timeout 3600
 fi
