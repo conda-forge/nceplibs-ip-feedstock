@@ -1,5 +1,5 @@
 {% set name = "nceplibs-ip" %}
-{% set version = "5.4.0" %}
+{% set version = "5.4.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/NOAA-EMC/NCEPLIBS-ip/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 918b2cc425d5f1fa7378346cad2d16ad68b03b575adeb40b8b37a7dc3e876041
+  sha256: c80eab0a28a081a90051257490e4fc801a90f66cb9e2435119379649b4289577
 #  patches:
 #    - 0001-Configure-flags-for-Intel-and-gfortran.patch  # [win]
 
 build:
-  number: 2
+  number: 0
 
 requirements:
   build:
